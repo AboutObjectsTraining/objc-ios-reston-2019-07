@@ -2,11 +2,11 @@
 <a href="https://www.aboutobjects.com"><img src="ao-logo.png" height=18 style="height: 18px;"/></a>
 </div>
 
-# objc-ios-mountainview-2019-06
+# objc-ios-reston-2019-07
 
 ## iOS Development in Objective-C
 
-June 10 – June 14, 2019
+July 15 – July 19, 2019
 
 
 ### Part 1: Objective-C
