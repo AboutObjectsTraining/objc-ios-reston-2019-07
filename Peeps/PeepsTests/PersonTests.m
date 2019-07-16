@@ -39,4 +39,27 @@
     NSLog(@"%@", fred);
 }
 
+- (void)testPersonWithAge {
+    Person *fred = [[Person alloc] init];
+    [fred setFirstName:@"Fred"];
+    [fred setLastName:@"Smith"];
+    NSLog(@"%@", fred);
+    
+    [fred setAge:42];
+    NSLog(@"%@", fred);
+    
+    // Messages to nil return nil (yay!)
+    Person *nilly = nil;
+    [nilly setAge: 12];
+    NSLog(@"%@", nilly);
+}
+
+- (void)testCustomInitializer {
+    Person *fred = [[Person alloc] initWithFirstName:@"Fred" lastName:@"Smith"];
+    NSLog(@"%@", fred);
+    
+    Person *bill = [Person personWithFirstName:@"Bill" lastName:@"Jones"];
+    NSLog(@"%@", bill);
+}
+
 @end

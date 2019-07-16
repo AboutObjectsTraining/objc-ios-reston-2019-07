@@ -5,6 +5,22 @@
 
 @implementation Person
 
+- (id)initWithFirstName:(NSString *)firstName
+               lastName:(NSString *)lastName
+{
+    if (!(self = [super init])) return nil;
+    
+    _firstName = [firstName copy];
+    _lastName = [lastName copy];
+    
+    return self;
+}
+
++ (id)personWithFirstName:(NSString *)firstName lastName:(NSString *)lastName
+{
+    return [[self alloc] initWithFirstName:firstName lastName:lastName];
+}
+
 - (NSString *)firstName {
     return _firstName;
 }
@@ -34,7 +50,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@: %@", [self class], [self fullName]];
+    return [NSString stringWithFormat:@"%@: %@, age: %d", [self class], [self fullName], [self age]];
 }
 
 @end

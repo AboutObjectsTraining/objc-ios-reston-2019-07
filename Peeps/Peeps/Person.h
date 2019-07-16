@@ -12,6 +12,12 @@
     int _age;
 }
 
+- (id)initWithFirstName:(NSString *)firstName
+               lastName:(NSString *)lastName;
+
++ (id)personWithFirstName:(NSString *)firstName
+                 lastName:(NSString *)lastName;
+
 - (NSString *)firstName;
 - (void)setFirstName:(NSString *)newValue;
 
