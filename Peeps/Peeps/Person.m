@@ -53,4 +53,11 @@
     return [NSString stringWithFormat:@"%@: %@, age: %d", [self class], [self fullName], [self age]];
 }
 
+- (nonnull id)copyWithZone:(nullable NSZone *)zone {
+    // FIXME: We should be calling allocWithZone: and setting ivars directly.
+    Person *copy = [Person personWithFirstName:[self firstName] lastName:[self lastName]];
+    copy->_age = _age;
+    return copy;
+}
+
 @end

@@ -62,4 +62,46 @@
     NSLog(@"%@", bill);
 }
 
+- (void)testCopyingPerson {
+    Person *bill = [Person personWithFirstName:@"Bill" lastName:@"Jones"];
+    [bill setAge:33];
+    NSLog(@"%@", bill);
+    
+    Person *copyOfBill = [bill copy];
+    NSLog(@"%@", copyOfBill);
+}
+
+- (void)testArraysOfStuff {
+    NSArray *objs = @[ @"Foo", @42, @"Bar" ];
+    for (id currObj in objs)
+    {
+        NSLog(@"%@", currObj);
+        if ([currObj respondsToSelector:@selector(isEqualToString:)]) {
+            NSLog(@"%@", [currObj isEqualToString:@"Foo"] ? @"equal" : @"not equal");
+        }
+    }
+    
+    id foo = @"Whee!";
+    NSString *s = [foo mutableCopy];
+    NSMutableString *s2 = (NSMutableString *) s;
+    NSLog(@"%@", s2);
+    
+    Person *p1 = [Person personWithFirstName:@"Bill" lastName:@"Jones"];
+    Person *p2 = [Person personWithFirstName:@"Fred" lastName:@"Smith"];
+    NSArray<Person *> *people = @[ p1, p2 ];
+    
+    NSLog(@"%@", [people[0] firstName]);
+    
+//    NSArray *peeps = @[p1, p2];
+//    NSLog(@"%@", [peeps[0] stringValue]);
+    
+    //
+    // Using a strongly typed loop variable.
+    //
+    for (Person *currPerson in people)
+    {
+        NSLog(@"%@", [currPerson firstName]);
+    }
+}
+
 @end
