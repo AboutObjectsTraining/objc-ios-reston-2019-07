@@ -24,6 +24,13 @@
 - (NSString *)fullName {
     return [NSString stringWithFormat:@"%@ %@", [self firstName], [self lastName]];
 }
+- (int)age {
+    return _age;
+}
+
+- (void)setAge:(int)newValue {
+    _age = newValue;
+}
 
 - (NSString *)description
 {

@@ -6,8 +6,10 @@
 @interface Person : NSObject
 {
     // Ivars
+@private
     NSString *_firstName;
     NSString *_lastName;
+    int _age;
 }
 
 - (NSString *)firstName;
@@ -17,5 +19,8 @@
 - (void)setLastName:(NSString *)newValue;
 
 - (NSString *)fullName;
+
+- (int)age;
+- (void)setAge:(int)newValue;
 
 @end
