@@ -15,4 +15,21 @@
     [self.window makeKeyAndVisible];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [UIApplication.sharedApplication sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+}
+
+//- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    UITouch *touch = touches.anyObject;
+//    CGPoint currLocation = [touch locationInView:nil];
+//    CGPoint prevLocation = [touch previousLocationInView:nil];
+//    CGFloat deltaX = currLocation.x - prevLocation.x;
+//    CGFloat deltaY = currLocation.y - prevLocation.y;
+//
+//    CGPoint location = touch.view.center;
+//    location.x += deltaX;
+//    location.y += deltaY;
+//    touch.view.center = location;
+//}
+
 @end
