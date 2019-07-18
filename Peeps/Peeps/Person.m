@@ -21,41 +21,18 @@
     return [[self alloc] initWithFirstName:firstName lastName:lastName];
 }
 
-- (NSString *)firstName {
-    return _firstName;
-}
-
-- (void)setFirstName:(NSString *)newValue {
-    _firstName = [newValue copy];
-}
-
-- (NSString *)lastName {
-    return _lastName;
-}
-
-- (void)setLastName:(NSString *)newValue {
-    _lastName = [newValue copy];
-}
-
 - (NSString *)fullName {
-    return [NSString stringWithFormat:@"%@ %@", [self firstName], [self lastName]];
-}
-- (int)age {
-    return _age;
-}
-
-- (void)setAge:(int)newValue {
-    _age = newValue;
+    return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@: %@, age: %d", [self class], [self fullName], [self age]];
+    return [NSString stringWithFormat:@"%@: %@, age: %d", self.class, self.fullName, self.age];
 }
 
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
     // FIXME: We should be calling allocWithZone: and setting ivars directly.
-    Person *copy = [Person personWithFirstName:[self firstName] lastName:[self lastName]];
+    Person *copy = [Person personWithFirstName:self.firstName lastName:self.lastName];
     copy->_age = _age;
     return copy;
 }

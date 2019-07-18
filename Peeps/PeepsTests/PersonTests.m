@@ -32,25 +32,26 @@
 
 - (void)testPersonInstance {
     Person *fred = [[Person alloc] init];
-    [fred setFirstName:@"Fred"];
-    [fred setLastName:@"Smith"];
+    fred.firstName = @"Fred";
+    fred.lastName = @"Smith";
     
-    NSLog(@"Full name: %@", [fred fullName]);
+    NSLog(@"First name: %@", fred.firstName);
+    NSLog(@"Full name: %@", fred.fullName);
     NSLog(@"%@", fred);
 }
 
 - (void)testPersonWithAge {
     Person *fred = [[Person alloc] init];
-    [fred setFirstName:@"Fred"];
-    [fred setLastName:@"Smith"];
+    fred.firstName = @"Fred";
+    fred.lastName =@"Smith";
     NSLog(@"%@", fred);
     
-    [fred setAge:42];
+    fred.age = 42;
     NSLog(@"%@", fred);
     
     // Messages to nil return nil (yay!)
     Person *nilly = nil;
-    [nilly setAge: 12];
+    nilly.age = 12;
     NSLog(@"%@", nilly);
 }
 
