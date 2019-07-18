@@ -53,6 +53,11 @@ UIEdgeInsets CLNTextInsets = {
     self.alpha = highlighted ? 0.5 : 1.0;
 }
 
+- (void)setText:(NSString *)text {
+    _text = [text copy];
+    [self sizeToFit];
+}
+
 
 // MARK: - Animation
 
@@ -61,34 +66,26 @@ UIEdgeInsets CLNTextInsets = {
     [self animateBounceWithDuration:1 size:CGSizeMake(120, 240)];
 }
 
-// FIXME: Switch to block literal-based API
-- (void)animateBounceWithDuration:(NSTimeInterval)duration size:(CGSize)size {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:duration];
-    [UIView setAnimationRepeatCount:3.5];
+- (void)configureBounceWithSize:(CGSize)size {
+    [UIView setAnimationRepeatCount:3];
     [UIView setAnimationRepeatAutoreverses:YES];
-    
     CGAffineTransform translation = CGAffineTransformMakeTranslation(size.width, size.height);
     self.transform = CGAffineTransformRotate(translation, M_PI_2);
-    
-    [UIView commitAnimations];
-    
-    [NSTimer scheduledTimerWithTimeInterval:7 target:self selector:@selector(animateFinalBounce:) userInfo:@(duration) repeats:NO];
 }
 
-- (void)animateFinalBounce:(NSTimer *)timer {
-    NSNumber *duration = timer.userInfo;
-    NSLog(@"In %s, duration is %.1f", __func__, duration.floatValue);
-    [self animateFinalBounceWithDuration:duration.floatValue];
-}
-
-- (void)animateFinalBounceWithDuration:(NSTimeInterval)duration {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:duration];
-    
-    self.transform = CGAffineTransformIdentity;
-    
-    [UIView commitAnimations];
+// FIXME: Switch to block literal-based API
+- (void)animateBounceWithDuration:(NSTimeInterval)duration size:(CGSize)size {
+    typeof(self) __weak weakSelf = self;
+    [UIView animateWithDuration:duration
+                     animations:^{
+                         typeof(weakSelf) strongSelf = weakSelf;
+                         [strongSelf configureBounceWithSize:size];
+                     }
+                     completion:^(BOOL finished) {
+                         typeof(weakSelf) strongSelf = weakSelf;
+                         strongSelf.transform = CGAffineTransformIdentity;
+                     }
+     ];
 }
 
 // MARK: - Drawing and resizing
